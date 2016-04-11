@@ -1,9 +1,9 @@
 # Docker Machine Vscale Driver
 
 This is a plugin for [Docker Machine](https://docs.docker.com/machine/) allowing
-to create Doker hosts on [Vscale]( http://vscale.io ) cloud services.
+to create Docker hosts on [Vscale]( http://vscale.io ) cloud services.
 
-This refactored version of [github.com/evrone/docker-machine-vscale](https://github.com/evrone/docker-machine-vscale)
+This is refactored version of [github.com/evrone/docker-machine-vscale](https://github.com/evrone/docker-machine-vscale)
 
 ## Installation
 
