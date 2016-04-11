@@ -1,0 +1,96 @@
+{
+	"ImportPath": "github.com/vahaah/docker-machine-vscale",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v62",
+	"Packages": [
+		"github.com/vahaah/docker-machine-vscale",
+		"github.com/vahaah/docker-machine-vscale/bin"
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/codegangsta/cli",
+			"Comment": "1.2.0-237-g71f57d3",
+			"Rev": "71f57d300dd6a780ac1856c005c4b518cfd498ec"
+		},
+		{
+			"ImportPath": "github.com/docker/docker/pkg/term",
+			"Comment": "v1.4.1-11528-gc327d9d",
+			"Rev": "c327d9d99b333932465d09d3cb8caecb5d317280"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/drivers",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/drivers/plugin",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/drivers/plugin/localbinary",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/drivers/rpc",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/log",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/mcnflag",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/mcnutils",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/ssh",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/state",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/libmachine/version",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/docker/machine/version",
+			"Comment": "v0.7.0-rc3",
+			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
+		},
+		{
+			"ImportPath": "github.com/evrone/vscale_api",
+			"Rev": "ed40ab7c86005ccfc1ec536035c824f1970221d6"
+		},
+		{
+			"ImportPath": "github.com/google/go-querystring/query",
+			"Rev": "9235644dd9e52eeae6fa48efd539fdc351a0af53"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/curve25519",
+			"Rev": "3fbbcd23f1cb824e69491a5930cfeff09b12f4d2"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh",
+			"Rev": "3fbbcd23f1cb824e69491a5930cfeff09b12f4d2"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh/terminal",
+			"Rev": "3fbbcd23f1cb824e69491a5930cfeff09b12f4d2"
+		}
+	]
+}
