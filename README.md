@@ -3,6 +3,8 @@
 This is a plugin for [Docker Machine](https://docs.docker.com/machine/) allowing
 to create Doker hosts on [Vscale]( http://vscale.io ) cloud services.
 
+This refactored version of [github.com/evrone/docker-machine-vscale](https://github.com/evrone/docker-machine-vscale)
+
 ## Installation
 
 To install this plugin manually, download the binary `docker-machine-driver-vscale`
@@ -59,3 +61,4 @@ $ make build
 
 After the build is complete, `bin/docker-machine-driver-vscale` binary will
 be created. If you want to copy it to the `${GOPATH}/bin/`, run `make install`.
+
