@@ -11,13 +11,13 @@ To install this plugin manually, download the binary `docker-machine-driver-vsca
 and  make it available by `$PATH`, for example by putting it to `/usr/local/bin/`:
 
 ```console
-$ curl -L https://github.com/vahaah/docker-machine-vscale/releases/download/1.0.0/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
+$ curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.0.0/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
 
 $ chmod +x /usr/local/bin/docker-machine-driver-vscale
 ```
 
 The latest version of `docker-machine-driver-vscale` binary is available on
-the ["Releases"](https://github.com/vahaah/docker-machine-vscale/releases) page.
+the ["Releases"](https://github.com/vahaah/docker-machine-driver-vscale/releases) page.
 
 ## Usage
 
@@ -54,8 +54,8 @@ Make sure Go is properly installed, including setting up a [GOPATH](http://golan
 Run these commands to build the plugin binary:
 
 ```bash
-$ go get -d github.com/vahaah/docker-machine-vscale
-$ cd $GOPATH/github.com/vahaah/docker-machine-vscale
+$ go get -d github.com/vahaah/docker-machine-driver-vscale
+$ cd $GOPATH/github.com/vahaah/docker-machine-driver-vscale
 $ make build
 ```
 
