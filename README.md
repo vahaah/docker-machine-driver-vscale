@@ -9,7 +9,7 @@ To install this plugin manually, download the binary `docker-machine-driver-vsca
 and  make it available by `$PATH`, for example by putting it to `/usr/local/bin/`:
 
 ```console
-$ curl -L https://github.com/vahaah/docker-machine-vscale/releases/download/v1.0.0/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
+$ curl -L https://github.com/vahaah/docker-machine-vscale/releases/download/1.0.0/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
 
 $ chmod +x /usr/local/bin/docker-machine-driver-vscale
 ```
@@ -45,7 +45,7 @@ Environment variables and default values:
 ## Development
 
 ### Build from Source
-If you wish to work on Parallels Driver for Docker machine, you'll first need
+If you wish to work on Vscale Driver for Docker machine, you'll first need
 [Go](http://www.golang.org) installed (version 1.5+ is required).
 Make sure Go is properly installed, including setting up a [GOPATH](http://golang.org/doc/code.html#GOPATH).
 
