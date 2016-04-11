@@ -4,7 +4,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/vahaah/docker-machine-vscale"
+	"github.com/vahaah/docker-machine-driver-vscale"
 	"github.com/codegangsta/cli"
 	"github.com/docker/machine/libmachine/drivers/plugin"
 )

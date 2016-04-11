@@ -1,10 +1,10 @@
 {
-	"ImportPath": "github.com/vahaah/docker-machine-vscale",
+	"ImportPath": "github.com/vahaah/docker-machine-driver-vscale",
 	"GoVersion": "go1.6",
 	"GodepVersion": "v62",
 	"Packages": [
-		"github.com/vahaah/docker-machine-vscale",
-		"github.com/vahaah/docker-machine-vscale/bin"
+		"github.com/vahaah/docker-machine-driver-vscale",
+		"github.com/vahaah/docker-machine-driver-vscale/bin"
 	],
 	"Deps": [
 		{
