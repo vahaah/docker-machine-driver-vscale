@@ -23,12 +23,14 @@ type Driver struct {
 	MadeFrom    string
 	Location    string
 	SSHKeyID    int
+	SwapFile    int
 }
 
 const (
 	defaultRplan    = "small"
 	defaultLocation = "spb0"
 	defaultMadeFrom = "ubuntu_14.04_64_002_master"
+	defaultSwapFile = 0
 )
 
 func (d *Driver) GetCreateFlags() []mcnflag.Flag {
@@ -56,6 +58,12 @@ func (d *Driver) GetCreateFlags() []mcnflag.Flag {
 			Usage:  "Vscale made from",
 			Value:  defaultMadeFrom,
 		},
+		mcnflag.IntFlag{
+			EnvVar: "VSCALE_SWAP_FILE",
+			Name:   "vscale-swap-file",
+			Usage:  "Vscale swap file",
+			Value:  defaultSwapFile,
+		},
 	}
 }
 
@@ -64,6 +72,7 @@ func NewDriver(hostName, storePath string) *Driver {
 		Rplan:    defaultRplan,
 		Location: defaultLocation,
 		MadeFrom: defaultMadeFrom,
+		SwapFile: defaultSwapFile,
 		BaseDriver: &drivers.BaseDriver{
 			MachineName: hostName,
 			StorePath:   storePath,
@@ -108,6 +117,7 @@ func (d *Driver) SetConfigFromFlags(flags drivers.DriverOptions) error {
 	d.Location = flags.String("vscale-location")
 	d.Rplan = flags.String("vscale-rplan")
 	d.MadeFrom = flags.String("vscale-made-from")
+	d.SwapFile = flags.Int("vscale-swap-file")
 
 	d.SwarmMaster = flags.Bool("swarm-master")
 	d.SwarmHost = flags.String("swarm-host")
@@ -180,7 +190,20 @@ func (d *Driver) Create() error {
 		time.Sleep(1 * time.Second)
 	}
 
-	log.Debugf("Created scalet with ID: %v, IPAddress: %v", d.ScaletID, d.IPAddress)
+	log.Info(fmt.Sprintf("Created scalet with ID: %v, IPAddress: %v", d.ScaletID, d.IPAddress))
+	if d.SwapFile > 0 {
+		log.Info(fmt.Sprintf("Creating SWAP file %d MB", d.SwapFile))
+
+		_, err := drivers.RunSSHCommandFromDriver(d, fmt.Sprintf(`touch /var/swap.img && \
+		chmod 600 /var/swap.img && \
+		dd if=/dev/zero of=/var/swap.img bs=1MB count=%d && \
+		mkswap /var/swap.img && swapon /var/swap.img && \
+		echo '/var/swap.img    none    swap    sw    0    0' >> /etc/fstab`, d.SwapFile))
+
+		if err != nil {
+			return err
+		}
+	}
 	return nil
 }
 

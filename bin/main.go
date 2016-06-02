@@ -31,7 +31,7 @@ func main() {
 	app.Name = path.Base(os.Args[0])
 	app.Usage = "This is a Docker Machine plugin binary. Please use it through the main 'docker-machine' binary."
 	app.Author = "Alex Vakhitov"
-	app.Email = "https://github.com/vahaah/docker-machine-vscale/"
+	app.Email = "https://github.com/vahaah/docker-machine-driver-vscale/"
 	app.Version = vscale.FullVersion()
 	app.Action = func(c *cli.Context) {
 		plugin.RegisterDriver(vscale.NewDriver("", ""))

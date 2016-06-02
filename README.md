@@ -11,7 +11,7 @@ To install this plugin manually, download the binary `docker-machine-driver-vsca
 and  make it available by `$PATH`, for example by putting it to `/usr/local/bin/`:
 
 ```console
-$ curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.0.0/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
+$ curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.0.1/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
 
 $ chmod +x /usr/local/bin/docker-machine-driver-vscale
 ```
@@ -34,6 +34,7 @@ Available options:
  - `--vscale-location`: Server location.
  - `--vscale-rplan`: Server size.
  - `--vscale-made-from`: Server type
+ - `--vscale-swap-file`: Swap size in MB
 
 Environment variables and default values:
 
@@ -43,6 +44,7 @@ Environment variables and default values:
 | `--vscale-location`           | `VSCALE_LOCATION`           | `spb0`                      |
 | `--vscale-rplan`              | `VSCALE_RPLAN`              | `small`                     |
 | `--vscale-made-from`          | `VSCALE_MADE_FROM`          | `ubuntu_14.04_64_002_master`|
+| `--vscale-swap-file`          | `VSCALE_SWAP_FILE`          | `0`                         |
 
 ## Development
 
