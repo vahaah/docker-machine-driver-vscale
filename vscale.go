@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"time"
+	"reflect"
 	"io/ioutil"
 
 	"github.com/docker/machine/libmachine/drivers"
@@ -27,7 +28,7 @@ type Driver struct {
 }
 
 const (
-	defaultRplan    = "small"
+	defaultRplan = "small"
 	defaultLocation = "spb0"
 	defaultMadeFrom = "ubuntu_14.04_64_002_master"
 	defaultSwapFile = 0
@@ -190,18 +191,30 @@ func (d *Driver) Create() error {
 		time.Sleep(1 * time.Second)
 	}
 
-	log.Info(fmt.Sprintf("Created scalet with ID: %v, IPAddress: %v", d.ScaletID, d.IPAddress))
+	log.Info(fmt.Sprintf("Creating scalet with ID: %v, IPAddress: %v", d.ScaletID, d.IPAddress))
 	if d.SwapFile > 0 {
-		log.Info(fmt.Sprintf("Creating SWAP file %d MB", d.SwapFile))
+		for {
+			tasks, _, err := client.Scalet.Tasks()
 
-		_, err := drivers.RunSSHCommandFromDriver(d, fmt.Sprintf(`touch /var/swap.img && \
-		chmod 600 /var/swap.img && \
-		dd if=/dev/zero of=/var/swap.img bs=1MB count=%d && \
-		mkswap /var/swap.img && swapon /var/swap.img && \
-		echo '/var/swap.img    none    swap    sw    0    0' >> /etc/fstab`, d.SwapFile))
+			if reflect.DeepEqual(tasks, &[]api.ScaletTask{}) {
+				log.Info(fmt.Sprintf("Creating SWAP file %d MB", d.SwapFile))
+				_, err := drivers.RunSSHCommandFromDriver(d, fmt.Sprintf(`touch /var/swap.img && \
+					chmod 600 /var/swap.img && \
+					dd if=/dev/zero of=/var/swap.img bs=1MB count=%d && \
+					mkswap /var/swap.img && swapon /var/swap.img && \
+					echo '/var/swap.img    none    swap    sw    0    0' >> /etc/fstab`, d.SwapFile))
 
-		if err != nil {
-			return err
+				if err != nil {
+					return err
+				}
+				break
+			}
+
+			if err != nil {
+				return err
+			}
+
+			time.Sleep(1 * time.Second)
 		}
 	}
 	return nil
