@@ -11,13 +11,21 @@ To install this plugin manually, download the binary `docker-machine-driver-vsca
 and  make it available by `$PATH`, for example by putting it to `/usr/local/bin/`:
 
 ```console
-$ curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.0.2/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
+$ curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.0.3/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
 
 $ chmod +x /usr/local/bin/docker-machine-driver-vscale
 ```
 
 The latest version of `docker-machine-driver-vscale` binary is available on
 the ["Releases"](https://github.com/vahaah/docker-machine-driver-vscale/releases) page.
+
+For Ubuntu 16.04:
+
+```console
+$ sudo curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.0.3/docker-machine-driver-vscale.ubuntu.16.04.x64 > /usr/local/bin/docker-machine-driver-vscale
+
+$ sudo chmod +x /usr/local/bin/docker-machine-driver-vscale
+```
 
 ## Usage
 

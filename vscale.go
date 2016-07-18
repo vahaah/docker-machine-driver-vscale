@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net"
 	"time"
-	"reflect"
 	"io/ioutil"
 
 	"github.com/docker/machine/libmachine/drivers"
@@ -194,9 +193,8 @@ func (d *Driver) Create() error {
 	log.Info(fmt.Sprintf("Creating scalet with ID: %v, IPAddress: %v", d.ScaletID, d.IPAddress))
 	if d.SwapFile > 0 {
 		for {
-			tasks, _, err := client.Scalet.Tasks()
-
-			if reflect.DeepEqual(tasks, &[]api.ScaletTask{}) {
+			ssh := drivers.WaitForSSH(d)
+			if ssh == nil {
 				log.Info(fmt.Sprintf("Creating SWAP file %d MB", d.SwapFile))
 				_, err := drivers.RunSSHCommandFromDriver(d, fmt.Sprintf(`touch /var/swap.img && \
 					chmod 600 /var/swap.img && \
@@ -213,8 +211,7 @@ func (d *Driver) Create() error {
 			if err != nil {
 				return err
 			}
-
-			time.Sleep(1 * time.Second)
+			time.Sleep(3 * time.Second)
 		}
 	}
 	return nil
