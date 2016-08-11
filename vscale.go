@@ -11,18 +11,18 @@ import (
 	"github.com/docker/machine/libmachine/mcnflag"
 	"github.com/docker/machine/libmachine/state"
 	"github.com/docker/machine/libmachine/ssh"
-	api "github.com/evrone/vscale_api"
+	api "github.com/vscale/go-vscale"
 )
 
 type Driver struct {
 	*drivers.BaseDriver
 	AccessToken string
-	ScaletID    int
+	ScaletID    int64
 	ScaletName  string
 	Rplan       string
 	MadeFrom    string
 	Location    string
-	SSHKeyID    int
+	SSHKeyID    int64
 	SwapFile    int
 }
 
@@ -103,12 +103,7 @@ func (d *Driver) createSSHKey() (*api.SSHKey, error) {
 		return nil, err
 	}
 
-	createRequest := &api.SSHKeyCreateRequest{
-		Name: d.MachineName,
-		Key:  string(publicKey),
-	}
-
-	key, _, err := d.getClient().SSHKey.Create(createRequest)
+	key, _, err := d.getClient().SSHKey.Create(string(publicKey), d.MachineName)
 	return key, err
 }
 
@@ -131,8 +126,8 @@ func (d *Driver) SetConfigFromFlags(flags drivers.DriverOptions) error {
 	return nil
 }
 
-func (d *Driver) getClient() *api.Client {
-	return api.New(d.AccessToken)
+func (d *Driver) getClient() *api.WebClient {
+	return api.NewClient(d.AccessToken)
 }
 
 func (d *Driver) PreCreateCheck() error {
@@ -155,16 +150,8 @@ func (d *Driver) Create() error {
 	log.Infof("Creating Vscale scalet...")
 
 	client := d.getClient()
-	createRequest := &api.ScaletCreateRequest{
-		MakeFrom: d.MadeFrom,
-		Rplan:    d.Rplan,
-		DoStart:  true,
-		Name:     d.MachineName,
-		Keys:     []int{d.SSHKeyID},
-		Location: d.Location,
-	}
+	newScalet, _, err := client.Scalet.CreateWithoutPassword(d.MadeFrom, d.Rplan, d.MachineName, d.Location, true, []int64{d.SSHKeyID}, true)
 
-	newScalet, _, err := client.Scalet.Create(createRequest)
 	if err != nil {
 		return err
 	}
@@ -174,13 +161,13 @@ func (d *Driver) Create() error {
 	log.Info("Waiting for IP address to be assigned to the Scalet...")
 
 	for {
-		newScalet, _, err = client.Scalet.GetByID(d.ScaletID)
+		newScalet, _, err = client.Scalet.Get(d.ScaletID)
 		if err != nil {
 			return err
 		}
 
-		if newScalet.PublicAddress != nil {
-			d.IPAddress = newScalet.PublicAddress.Address
+		if newScalet.Active == true {
+			d.IPAddress = newScalet.PublicAddresses.Address
 		}
 
 		if d.IPAddress != "" {
@@ -190,7 +177,7 @@ func (d *Driver) Create() error {
 		time.Sleep(1 * time.Second)
 	}
 
-	log.Info(fmt.Sprintf("Creating scalet with ID: %v, IPAddress: %v", d.ScaletID, d.IPAddress))
+	log.Info(fmt.Sprintf("Scalet created! ID: %v, IPAddress: %v", d.ScaletID, d.IPAddress))
 	if d.SwapFile > 0 {
 		for {
 			ssh := drivers.WaitForSSH(d)
@@ -226,7 +213,7 @@ func (d *Driver) GetURL() (string, error) {
 }
 
 func (d *Driver) GetState() (state.State, error) {
-	scalet, _, err := d.getClient().Scalet.GetByID(d.ScaletID)
+	scalet, _, err := d.getClient().Scalet.Get(d.ScaletID)
 	if err != nil {
 		return state.Error, err
 	}
@@ -243,36 +230,33 @@ func (d *Driver) GetState() (state.State, error) {
 }
 
 func (d *Driver) Start() error {
-	_, _, err := d.getClient().Scalet.Start(d.ScaletID)
+	_, _, err := d.getClient().Scalet.Start(d.ScaletID, true)
 	return err
 }
 
 func (d *Driver) Stop() error {
-	_, _, err := d.getClient().Scalet.Halt(d.ScaletID)
+	_, _, err := d.getClient().Scalet.Stop(d.ScaletID, true)
 	return err
 }
 
 func (d *Driver) Remove() error {
 	client := d.getClient()
-	_, _, err := client.Scalet.Delete(d.ScaletID)
+	_, _, err := client.Scalet.Remove(d.ScaletID, true)
 	if err != nil {
 		return err
 	}
 
-	_, err = client.SSHKey.Delete(d.SSHKeyID)
-	if err != nil {
-		return err
-	}
+	_, _ , _ = client.SSHKey.Remove(d.SSHKeyID)
 
 	return nil
 }
 
 func (d *Driver) Restart() error {
-	_, _, err := d.getClient().Scalet.Restart(d.ScaletID)
+	_, _, err := d.getClient().Scalet.Restart(d.ScaletID, true)
 	return err
 }
 
 func (d *Driver) Kill() error {
-	_, _, err := d.getClient().Scalet.Halt(d.ScaletID)
+	_, _, err := d.getClient().Scalet.Remove(d.ScaletID, true)
 	return err
 }

@@ -1,3 +1,5 @@
 docker-machine-driver-vscale
 *.log
 .idea/
+devel/
+Godeps/_workspace/

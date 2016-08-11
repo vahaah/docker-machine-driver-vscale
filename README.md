@@ -3,15 +3,13 @@
 This is a plugin for [Docker Machine](https://docs.docker.com/machine/) allowing
 to create Docker hosts on [Vscale]( http://vscale.io ) cloud services.
 
-This is refactored version of [github.com/evrone/docker-machine-vscale](https://github.com/evrone/docker-machine-vscale)
-
 ## Installation
 
 To install this plugin manually, download the binary `docker-machine-driver-vscale`
 and  make it available by `$PATH`, for example by putting it to `/usr/local/bin/`:
 
 ```console
-$ curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.0.3/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
+$ curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.1.0/docker-machine-driver-vscale > /usr/local/bin/docker-machine-driver-vscale
 
 $ chmod +x /usr/local/bin/docker-machine-driver-vscale
 ```
@@ -22,7 +20,7 @@ the ["Releases"](https://github.com/vahaah/docker-machine-driver-vscale/releases
 For Ubuntu 16.04:
 
 ```console
-$ sudo curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.0.3/docker-machine-driver-vscale.ubuntu.16.04.x64 > /usr/local/bin/docker-machine-driver-vscale
+$ sudo curl -L https://github.com/vahaah/docker-machine-driver-vscale/releases/download/1.1.0/docker-machine-driver-vscale.ubuntu.16.04.x64 > /usr/local/bin/docker-machine-driver-vscale
 
 $ sudo chmod +x /usr/local/bin/docker-machine-driver-vscale
 ```

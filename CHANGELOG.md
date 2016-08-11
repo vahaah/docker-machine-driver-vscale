@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0 (2016-08-11)
+
+Official Go api
+
 ## 1.0.3 (2016-07-18)
 
 Fixed ssh

@@ -1,21 +1,49 @@
 {
 	"ImportPath": "github.com/vahaah/docker-machine-driver-vscale",
-	"GoVersion": "go1.6",
-	"GodepVersion": "v62",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v66",
 	"Packages": [
 		"github.com/vahaah/docker-machine-driver-vscale",
 		"github.com/vahaah/docker-machine-driver-vscale/bin"
 	],
 	"Deps": [
 		{
+			"ImportPath": "github.com/Azure/go-ansiterm",
+			"Rev": "388960b655244e76e24c75f48631564eaefade62"
+		},
+		{
+			"ImportPath": "github.com/Azure/go-ansiterm/winterm",
+			"Rev": "388960b655244e76e24c75f48631564eaefade62"
+		},
+		{
+			"ImportPath": "github.com/Sirupsen/logrus",
+			"Comment": "v0.10.0-16-gcd7d1bb",
+			"Rev": "cd7d1bbe41066b6c1f19780f895901052150a575"
+		},
+		{
 			"ImportPath": "github.com/codegangsta/cli",
 			"Comment": "1.2.0-237-g71f57d3",
 			"Rev": "71f57d300dd6a780ac1856c005c4b518cfd498ec"
 		},
 		{
+			"ImportPath": "github.com/docker/docker/pkg/system",
+			"Comment": "v1.4.1-12020-gaf60a9e",
+			"Rev": "af60a9e599543daa70da6d5d3b07343aa780c3ad"
+		},
+		{
 			"ImportPath": "github.com/docker/docker/pkg/term",
-			"Comment": "v1.4.1-11528-gc327d9d",
-			"Rev": "c327d9d99b333932465d09d3cb8caecb5d317280"
+			"Comment": "v1.4.1-12020-gaf60a9e",
+			"Rev": "af60a9e599543daa70da6d5d3b07343aa780c3ad"
+		},
+		{
+			"ImportPath": "github.com/docker/docker/pkg/term/windows",
+			"Comment": "v1.4.1-12020-gaf60a9e",
+			"Rev": "af60a9e599543daa70da6d5d3b07343aa780c3ad"
+		},
+		{
+			"ImportPath": "github.com/docker/go-units",
+			"Comment": "v0.3.0",
+			"Rev": "5d2041e26a699eaca682e2ea41c8f891e1060444"
 		},
 		{
 			"ImportPath": "github.com/docker/machine/libmachine/drivers",
@@ -73,12 +101,13 @@
 			"Rev": "d6c595f85ee644582e75e1bb9f26c72bd4c26b5f"
 		},
 		{
-			"ImportPath": "github.com/evrone/vscale_api",
-			"Rev": "ed40ab7c86005ccfc1ec536035c824f1970221d6"
+			"ImportPath": "github.com/gorilla/websocket",
+			"Comment": "v1.0.0-20-ga69d25b",
+			"Rev": "a69d25be2fe2923a97c2af6849b2f52426f68fc0"
 		},
 		{
-			"ImportPath": "github.com/google/go-querystring/query",
-			"Rev": "9235644dd9e52eeae6fa48efd539fdc351a0af53"
+			"ImportPath": "github.com/vscale/go-vscale",
+			"Rev": "3a451bcafddc1af539ad253a3520507099417aaf"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/curve25519",
@@ -91,6 +120,10 @@
 		{
 			"ImportPath": "golang.org/x/crypto/ssh/terminal",
 			"Rev": "3fbbcd23f1cb824e69491a5930cfeff09b12f4d2"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "b776ec39b3e54652e09028aaaaac9757f4f8211a"
 		}
 	]
 }
