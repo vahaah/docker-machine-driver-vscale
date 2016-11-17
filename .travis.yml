@@ -1,0 +1,16 @@
+language: go
+
+branches:
+  only:
+    - master
+
+go:
+ - 1.6.3
+ - 1.7
+
+install:
+ - go get github.com/tools/godep
+ - make dep-restore
+
+script:
+ - go test -v

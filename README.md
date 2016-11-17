@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/vahaah/docker-machine-driver-vscale.svg?branch=master)](https://travis-ci.org/vahaah/docker-machine-driver-vscale)
+
 # Docker Machine Vscale Driver
 
 This is a plugin for [Docker Machine](https://docs.docker.com/machine/) allowing
@@ -69,4 +71,3 @@ $ make build
 
 After the build is complete, `bin/docker-machine-driver-vscale` binary will
 be created. If you want to copy it to the `${GOPATH}/bin/`, run `make install`.
-
